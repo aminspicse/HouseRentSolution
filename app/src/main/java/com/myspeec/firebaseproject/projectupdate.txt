@@ -1,0 +1,3 @@
+LandingActivity  -->complete
+LoginActivity --> Complete
+RegistrationActivity -- Complete
