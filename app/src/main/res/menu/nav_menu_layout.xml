@@ -17,6 +17,11 @@
             android:id="@+id/MenuIdProfile"
             android:title="Profile"
             android:icon="@drawable/profile_ico"/>
+
+        <item
+            android:id="@+id/MenuIdMyPost"
+            android:title="My Posts"
+            android:icon="@drawable/mypost"/>
         <item
             android:id="@+id/MenuIdLogout"
             android:title="Logout"
@@ -27,12 +32,12 @@
         <menu>
             <item
                 android:id="@+id/idContact"
-                android:title="Contact"
+                android:title="Contact Us"
                 android:icon="@drawable/contact_ico"/>
             <item
-                android:id="@+id/idShare"
-                android:title="Share"
-                android:icon="@drawable/share_ico"/>
+                android:id="@+id/idAbout"
+                android:title="About Us"
+                android:icon="@drawable/about_us"/>
         </menu>
     </item>
 </menu>

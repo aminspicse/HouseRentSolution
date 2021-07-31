@@ -51,28 +51,35 @@ public class PasswordResetActivity extends AppCompatActivity {
     private void resetPassword() {
       String email = editTextEmail.getText().toString();
 
-      if(email.isEmpty()){
-          editTextError.setText("Email is required");
-      }
+        if (emailValidation(email) != false){
+            progressBar.setVisibility(View.VISIBLE);
 
-      if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-          editTextError.setText("Please Provide a valid email");
-
-      }
-
-      progressBar.setVisibility(View.VISIBLE);
-
-        auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    editTextError.setText("Please Check Your Email and Click Login");
-                    progressBar.setVisibility(View.GONE);
-                }else{
-                    editTextError.setText("Try again and provide Valid Email");
-                    progressBar.setVisibility(View.GONE);
+            auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if(task.isSuccessful()){
+                        editTextError.setText("Please Check Your Email and Click Login");
+                        progressBar.setVisibility(View.GONE);
+                    }else{
+                        editTextError.setText("Try again and provide Valid Email");
+                        progressBar.setVisibility(View.GONE);
+                    }
                 }
-            }
-        });
+            });
+        }
+
+
+    }
+
+    private boolean emailValidation(String email){
+        if(email.isEmpty()){
+            editTextError.setText("Email is required");
+            return false;
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editTextError.setText("Please Provide a valid email");
+            return false;
+        }else{
+            return true;
+        }
     }
 }

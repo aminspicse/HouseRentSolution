@@ -45,7 +45,7 @@ public class CreatePostActivity extends AppCompatActivity {
     DatabaseReference mRef;
     FirebaseStorage mStorage;
     ImageButton imageButton;
-    EditText editTextTitle, editTextDescription, editTextTaka, editTextLocation ;
+    EditText editTextTitle, editTextDescription, editTextTaka, editTextLocation,editTextMobile;
     Button postButton;
 
     Context context;
@@ -55,10 +55,14 @@ public class CreatePostActivity extends AppCompatActivity {
 
     String Email;
 
+    ImageView homeIcon, createPost, logOut, backIcon, searchIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
+
+        getSupportActionBar().hide();
 
         imageButton = findViewById(R.id.imageButton);
         postButton = findViewById(R.id.postButton);
@@ -67,6 +71,50 @@ public class CreatePostActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.editTextDescription);
         editTextTaka = findViewById(R.id.editTextTaka);
         editTextLocation = findViewById(R.id.editTextLocation);
+        editTextMobile = findViewById(R.id.editTextMobile);
+
+        // Menu icon
+        homeIcon = findViewById(R.id.homeIcon);
+        createPost = findViewById(R.id.createPost);
+        logOut = findViewById(R.id.logOut);
+        backIcon = findViewById(R.id.backIcon);
+        searchIcon = findViewById(R.id.search_icon);
+
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CreatePostActivity.this,SearchPost.class));
+            }
+        });
+        homeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CreatePostActivity.this,ViewPost.class));
+            }
+        });
+        createPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CreatePostActivity.this,CreatePostActivity.class));
+            }
+        });
+
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(CreatePostActivity.this,LoginActivity.class));
+            }
+        });
+
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CreatePostActivity.this, MainActivity.class));
+            }
+        });
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         Email = firebaseAuth.getCurrentUser().getEmail();
@@ -97,12 +145,7 @@ public class CreatePostActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        /*if(requestCode == Gallery_Code && requestCode == RESULT_OK){
-            imageUrl = data.getData();
-            imageButton.setImageURI(imageUrl);
-        }
 
-         */
         if (requestCode == Image_Request_Code && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
             imageUrl = data.getData();
@@ -124,13 +167,14 @@ public class CreatePostActivity extends AppCompatActivity {
                 String descripton = editTextDescription.getText().toString().trim();
                 String rent = editTextTaka.getText().toString().trim();
                 String location = editTextLocation.getText().toString().trim();
+                String mobile = editTextMobile.getText().toString().trim();
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd G 'at' HH:mm:ss z");
                 String currentDateandTime = sdf.format(new Date());
 
 
                 if(!(title.isEmpty() && descripton.isEmpty() && imageUrl != null)){
-                    progressDialog.setTitle("Uploading....");
+                    //progressDialog.setTitle("Uploading....");
                     progressDialog.show();
 
                     StorageReference filepath = mStorage.getReference().child("posts").child(imageUrl.getLastPathSegment());
@@ -149,12 +193,8 @@ public class CreatePostActivity extends AppCompatActivity {
                                     newPost.child("location").setValue(location);
                                     newPost.child("email").setValue(Email);
                                     newPost.child("postTime").setValue(currentDateandTime);
+                                    newPost.child("mobile").setValue(mobile);
                                     progressDialog.dismiss();
-
-                                    editTextTitle.setText("");
-                                    editTextDescription.setText("");
-                                    editTextTaka.setText("");
-                                    editTextLocation.setText("");
 
                                     startActivity(new Intent(CreatePostActivity.this,ViewPost.class));
                                 }

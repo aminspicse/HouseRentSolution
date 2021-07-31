@@ -10,7 +10,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/btn_color"
+        android:background="@color/nav_background"
         app:layout_constraintBottom_toTopOf="@+id/recyclerview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
+            android:layout_width="29dp"
+            android:layout_height="64dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="7dp"
@@ -34,8 +34,8 @@
 
         <ImageView
             android:id="@+id/homeIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
+            android:layout_width="29dp"
+            android:layout_height="62dp"
             android:layout_marginStart="3dp"
             android:layout_marginLeft="3dp"
             android:layout_marginTop="7dp"
@@ -44,13 +44,15 @@
             android:src="@drawable/home_ico"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/backIcon"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.428" />
 
         <ImageView
             android:id="@+id/createPost"
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
+            android:layout_width="26dp"
+            android:layout_height="60dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="7dp"
@@ -59,25 +61,43 @@
             android:src="@drawable/create_post_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.714"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/homeIcon"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.272" />
 
         <ImageView
             android:id="@+id/logOut"
-            android:layout_width="wrap_content"
-            android:layout_height="41dp"
+            android:layout_width="34dp"
+            android:layout_height="52dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="7dp"
-            android:layout_marginEnd="251dp"
-            android:layout_marginRight="251dp"
             android:src="@drawable/logout_ico"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/createPost"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="30dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginLeft="156dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginRight="46dp"
+            android:background="@drawable/search_ico"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/logOut"
+            app:layout_constraintHorizontal_bias="0.166"
+            app:layout_constraintStart_toEndOf="@+id/createPost"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

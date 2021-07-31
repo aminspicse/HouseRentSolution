@@ -37,19 +37,27 @@ public class ViewPost extends AppCompatActivity {
     RecyclerAdapter recyclerAdapter;
     List<ViewPostModel> viewPostModelList;
 
-    ImageView homeIcon, createPost, logOut, backIcon;
+    ImageView homeIcon, createPost, logOut, backIcon, search_icon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_post);
         getSupportActionBar().hide();
 
+        Intent intent;
         // Menu icon
         homeIcon = findViewById(R.id.homeIcon);
         createPost = findViewById(R.id.createPost);
         logOut = findViewById(R.id.logOut);
         backIcon = findViewById(R.id.backIcon);
+        search_icon = findViewById(R.id.search_icon);
 
+        search_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewPost.this,SearchPost.class));
+            }
+        });
         homeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +76,7 @@ public class ViewPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(ViewPost.this,LoginActivity.class));
             }
         });
 
