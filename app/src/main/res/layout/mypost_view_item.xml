@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="2dp"
-        android:layout_margin="5dp"
+        android:layout_margin="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -73,17 +73,26 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/shareIcon"
-                android:layout_marginLeft="250dp"
-                android:background="@drawable/share_ico"
+                android:id="@+id/viewIcon"
+                android:layout_marginLeft="75dp"
+                android:background="@drawable/viewed_icon"
                 android:layout_below="@id/postedTime"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/likeIcon"
-                android:layout_marginLeft="150dp"
-                android:background="@drawable/search_ico"
+                android:layout_marginLeft="180dp"
+                android:background="@drawable/edit_icon"
                 android:layout_below="@id/postedTime"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/shareIcon"
+                android:layout_marginLeft="290dp"
+                android:background="@drawable/delete_icon"
+                android:layout_below="@id/postedTime"/>
+
 
             <View
                 android:layout_width="match_parent"
