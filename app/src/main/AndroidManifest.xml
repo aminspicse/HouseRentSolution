@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity android:name=".PasswordResetActivity"></activity>
+        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".ContactUs" />
+        <activity android:name=".SearchPost" />
+        <activity android:name=".MyPostActivity" />
+        <activity android:name=".PasswordResetActivity" />
         <activity android:name=".LandingActivity" />
         <activity android:name=".ViewPost" />
         <activity android:name=".ProfileActivity" />

@@ -72,6 +72,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if(item.getItemId() == R.id.MenuIdCreate){
             intent = new Intent(this,CreatePostActivity.class);
             startActivity(intent);
+        }else if(item.getItemId() == R.id.MenuIdMyPost){
+            startActivity(new Intent(this, MyPostActivity.class));
+        }
+        else if(item.getItemId() == R.id.idContact){
+            startActivity(new Intent(this, ContactUs.class));
+        }
+        else if(item.getItemId() == R.id.idAbout){
+            startActivity(new Intent(this,AboutUs.class));
         }
         return false;
     }
