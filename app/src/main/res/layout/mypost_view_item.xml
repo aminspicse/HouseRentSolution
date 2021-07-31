@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/title"
+                android:textStyle="bold"
+                android:fontFamily="@font/mont_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/rentAmount"
+                android:textStyle="bold"
+                android:fontFamily="@font/mont_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:textSize="20sp" />
+            <!--
+            <TextView
+                android:id="@+id/location"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rentAmount"
+                android:textSize="20sp" />
+            -->
+            <TextView
+                android:id="@+id/description"
+                android:fontFamily="@font/mont_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rentAmount"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/postedby"
+                android:fontFamily="@font/mont_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/description"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/postedTime"
+                android:fontFamily="@font/mont_italic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/postedby"
+                android:textSize="16sp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/shareIcon"
+                android:layout_marginLeft="250dp"
+                android:background="@drawable/share_ico"
+                android:layout_below="@id/postedTime"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/likeIcon"
+                android:layout_marginLeft="150dp"
+                android:background="@drawable/search_ico"
+                android:layout_below="@id/postedTime"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="2dp"
+                android:layout_below="@id/likeIcon"
+                android:background="#E91E63"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
