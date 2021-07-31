@@ -3,7 +3,9 @@ package com.myspeec.firebaseproject;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,7 +45,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         firebaseAuth = FirebaseAuth.getInstance();
         Uri name = firebaseAuth.getCurrentUser().getPhotoUrl();
 
-        System.out.println("Your Name is : "+name);
+        //userEmail = findViewById(R.id.userName);
+        //userEmail.setText("Helow");
+
+        //System.out.println("Your Name is : "+name);
 
     }
 

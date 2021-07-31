@@ -111,7 +111,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <ImageButton
                 android:id="@+id/imageButton"
@@ -124,9 +126,11 @@
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <EditText
+                android:background="@drawable/bordered_text"
+                android:layout_marginTop="5dp"
                 android:id="@+id/editTextTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:ems="10"
                 android:hint="House Name/Title"
                 android:inputType="text"
@@ -136,9 +140,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
             <EditText
+                android:background="@drawable/bordered_text"
+                android:layout_marginTop="5dp"
                 android:id="@+id/editTextTaka"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:ems="10"
                 android:hint="Monthly Rent"
                 android:inputType="text"
@@ -148,9 +154,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
 
             <EditText
+                android:background="@drawable/bordered_text"
+                android:layout_marginTop="5dp"
                 android:id="@+id/editTextLocation"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:ems="10"
                 android:hint="House Address"
                 android:inputType="text"
@@ -160,9 +168,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextTaka" />
 
             <EditText
+                android:background="@drawable/bordered_text"
+                android:layout_marginTop="5dp"
                 android:id="@+id/editTextMobile"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:ems="10"
                 android:hint="Mobile Number"
                 android:inputType="phone"
@@ -172,9 +182,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextLocation" />
 
             <EditText
+                android:background="@drawable/bordered_text"
+                android:layout_marginTop="5dp"
                 android:id="@+id/editTextDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:ems="10"
                 android:hint="Details"
                 android:textSize="20sp"
@@ -183,6 +195,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editTextMobile" />
 
             <Button
+                android:layout_marginTop="5dp"
                 android:id="@+id/postButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
