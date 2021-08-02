@@ -3,6 +3,7 @@ package com.myspeec.firebaseproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -26,7 +27,7 @@ public class PasswordResetActivity extends AppCompatActivity {
     EditText editTextEmail;
     ProgressBar progressBar;
     //String email;
-    TextView editTextError;
+    TextView editTextError, login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +36,22 @@ public class PasswordResetActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextError = findViewById(R.id.editTextError);
+        login = findViewById(R.id.login);
         progressBar = findViewById(R.id.progressBar);
 
         btnPasswordReset = findViewById(R.id.btnPasswordReset);
 
-        //
+        // if click login button then open LoginActivity
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                startActivity(new Intent(PasswordResetActivity.this,LoginActivity.class));
+            }
+        });
+
+        // when click send reset Password link then work this code
         btnPasswordReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,8 +82,6 @@ public class PasswordResetActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
 
     private boolean emailValidation(String email){
