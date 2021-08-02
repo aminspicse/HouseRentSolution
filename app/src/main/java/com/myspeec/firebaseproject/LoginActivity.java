@@ -37,21 +37,21 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide(); // for hiding actionbar
 
         btnLogin = findViewById(R.id.btnLogin);
-
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextError = findViewById(R.id.editTextError);
         textViewforgotPassword = findViewById(R.id.forgotpassword);
         textViewRegister = findViewById(R.id.register);
-
         progressBar = findViewById(R.id.progressBar);
 
+
+        // check user login or not if already login then redirect ViewPost Activity class
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        
         if(user != null){
             startActivity(new Intent(this,ViewPost.class));
         }
 
+        // If user is new user then work this code
         textViewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // if click forgot poassword then work this code
         textViewforgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,50 +71,12 @@ public class LoginActivity extends AppCompatActivity {
 
         fireBaseAuth = FirebaseAuth.getInstance();
 
+        // for login
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
-
-                if(!EmailValidation() | !PasswordValidation()){
-                    progressBar.setVisibility(View.GONE);
-                    return;
-                }else{
-                    email = editTextEmail.getText().toString();
-                    password = editTextPassword.getText().toString();
-
-                    fireBaseAuth.signInWithEmailAndPassword(email,password)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()){
-                                        if(fireBaseAuth.getCurrentUser().isEmailVerified()){
-                                            startActivity(new Intent(LoginActivity.this,ViewPost.class));
-                                            finish();
-                                        }else{
-                                            editTextError.setText("Please Verify your email address! Check Your Email.");
-                                            editTextEmail.setError("Please Verify your email address! Check Your Email.");
-                                            progressBar.setVisibility(View.GONE);
-                                        }
-                                    }
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.d("This",e.getMessage());
-                            if(e.getMessage().equals("There is no user record corresponding to this identifier. The user may have been deleted.")){
-                                editTextEmail.setError("This user is not Registered");
-                                editTextError.setText("This user is not Registered");
-                            }else if(e.getMessage().equals("The email address is badly formatted.")){
-                                editTextEmail.setError("The email address is badly formatted.");
-                                editTextError.setText("The email address is badly formatted.");
-                            }else if(e.getMessage().equals("The password is invalid or the user does not have a password.")){
-                                editTextError.setText("The password is invalid or the user does not have a password.");
-                                editTextPassword.setError("The password is invalid or the user does not have a password.");
-                            }
-                        }
-                    });
-                }
+                Login();
             }
         });
     }
@@ -143,6 +106,53 @@ public class LoginActivity extends AppCompatActivity {
         }else{
             editTextPassword.setError(null);
             return true;
+        }
+    }
+
+    public void Login(){
+
+        if(!EmailValidation() | !PasswordValidation()){
+            progressBar.setVisibility(View.GONE);
+            return;
+        }else{
+            email = editTextEmail.getText().toString();
+            password = editTextPassword.getText().toString();
+
+            fireBaseAuth.signInWithEmailAndPassword(email,password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                if(fireBaseAuth.getCurrentUser().isEmailVerified()){
+                                    startActivity(new Intent(LoginActivity.this,ViewPost.class));
+                                    finish();
+                                }else{
+                                    editTextError.setText("Please Verify your email address! Check Your Email.");
+                                    editTextEmail.setError("Please Verify your email address! Check Your Email.");
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d("This",e.getMessage());
+                    if(e.getMessage().equals("There is no user record corresponding to this identifier. The user may have been deleted.")){
+                        editTextEmail.setError("This user is not Registered");
+                        editTextError.setText("This user is not Registered");
+                        progressBar.setVisibility(View.GONE);
+                    }else if(e.getMessage().equals("The email address is badly formatted.")){
+                        editTextEmail.setError("The email address is badly formatted.");
+                        editTextError.setText("The email address is badly formatted.");
+                        progressBar.setVisibility(View.GONE);
+                    }else if(e.getMessage().equals("The password is invalid or the user does not have a password.")){
+                        editTextError.setText("The password is invalid or the user does not have a password.");
+                        editTextPassword.setError("The password is invalid or the user does not have a password.");
+                        progressBar.setVisibility(View.GONE);
+                    }
+
+                }
+            });
         }
     }
 }
