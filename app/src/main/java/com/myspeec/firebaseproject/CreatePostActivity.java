@@ -163,50 +163,53 @@ public class CreatePostActivity extends AppCompatActivity {
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = editTextTitle.getText().toString().trim();
-                String descripton = editTextDescription.getText().toString().trim();
-                String rent = editTextTaka.getText().toString().trim();
-                String location = editTextLocation.getText().toString().trim();
-                String mobile = editTextMobile.getText().toString().trim();
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd G 'at' HH:mm:ss z");
-                String currentDateandTime = sdf.format(new Date());
-
-
-                if(!(title.isEmpty() && descripton.isEmpty() && imageUrl != null)){
-                    //progressDialog.setTitle("Uploading....");
-                    progressDialog.show();
-
-                    StorageReference filepath = mStorage.getReference().child("posts").child(imageUrl.getLastPathSegment());
-                    filepath.putFile(imageUrl).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Uri> task) {
-                                    String t = task.getResult().toString();
-                                    DatabaseReference newPost = mRef.push();
-                                    newPost.child("imageName").setValue(title);
-                                    newPost.child("imageURL").setValue(task.getResult().toString());
-                                    newPost.child("description").setValue(descripton);
-                                    newPost.child("rentAmount").setValue(rent);
-                                    newPost.child("location").setValue(location);
-                                    newPost.child("email").setValue(Email);
-                                    newPost.child("postTime").setValue(currentDateandTime);
-                                    newPost.child("mobile").setValue(mobile);
-                                    progressDialog.dismiss();
-
-                                    startActivity(new Intent(CreatePostActivity.this,ViewPost.class));
-                                }
-
-                            });
-                        }
-                    });
-                }
+                Post();
             }
         });
     }
 
+    public void Post(){
+        String title = editTextTitle.getText().toString().trim();
+        String descripton = editTextDescription.getText().toString().trim();
+        String rent = editTextTaka.getText().toString().trim();
+        String location = editTextLocation.getText().toString().trim();
+        String mobile = editTextMobile.getText().toString().trim();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd G 'at' HH:mm:ss z");
+        String currentDateandTime = sdf.format(new Date());
+
+
+        if(!(title.isEmpty() && descripton.isEmpty() && imageUrl != null)){
+            progressDialog.setTitle("Posting....");
+            progressDialog.show();
+
+            StorageReference filepath = mStorage.getReference().child("posts").child(imageUrl.getLastPathSegment());
+            filepath.putFile(imageUrl).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            String t = task.getResult().toString();
+                            DatabaseReference newPost = mRef.push();
+                            newPost.child("imageName").setValue(title);
+                            newPost.child("imageURL").setValue(task.getResult().toString());
+                            newPost.child("description").setValue(descripton);
+                            newPost.child("rentAmount").setValue(rent);
+                            newPost.child("location").setValue(location);
+                            newPost.child("email").setValue(Email);
+                            newPost.child("postTime").setValue(currentDateandTime);
+                            newPost.child("mobile").setValue(mobile);
+                            progressDialog.dismiss();
+
+                            startActivity(new Intent(CreatePostActivity.this,ViewPost.class));
+                        }
+
+                    });
+                }
+            });
+        }
+    }
     public static void takePhoto(Activity activity){
         //Activity activity;
         activity.startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), Gallery_Code);
