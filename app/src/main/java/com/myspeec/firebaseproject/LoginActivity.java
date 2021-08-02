@@ -109,13 +109,14 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    // for user login
     public void Login(){
 
         if(!EmailValidation() | !PasswordValidation()){
             progressBar.setVisibility(View.GONE);
             return;
         }else{
-            email = editTextEmail.getText().toString();
+            email = editTextEmail.getText().toString().toLowerCase();
             password = editTextPassword.getText().toString();
 
             fireBaseAuth.signInWithEmailAndPassword(email,password)
