@@ -39,17 +39,20 @@ public class PasswordResetActivity extends AppCompatActivity {
 
         btnPasswordReset = findViewById(R.id.btnPasswordReset);
 
+        //
         btnPasswordReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetPassword();
+                sendResetLink();
                 
             }
         });
     }
 
-    private void resetPassword() {
-      String email = editTextEmail.getText().toString();
+    // if email is ok then send a reset password link
+
+    private void sendResetLink() {
+      String email = editTextEmail.getText().toString().toLowerCase();
 
         if (emailValidation(email) != false){
             progressBar.setVisibility(View.VISIBLE);
