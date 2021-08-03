@@ -10,8 +10,17 @@ public class ViewPostModel {
     String email;
     String postTime;
 
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    String mobile;
     public ViewPostModel(){}
-    public ViewPostModel(String imageName, String imageUrl, String description, String rentAmount, String location, String email, String postTime) {
+    public ViewPostModel(String imageName, String imageUrl, String description, String rentAmount, String location, String email, String postTime, String mobile) {
         this.imageName = imageName;
         this.imageURL = imageUrl;
         this.description = description;
@@ -19,6 +28,7 @@ public class ViewPostModel {
         this.location = location;
         this.email = email;
         this.postTime=postTime;
+        this.mobile = mobile;
     }
 
     public String getRentAmount() {

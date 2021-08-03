@@ -33,6 +33,8 @@ public class PasswordResetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_reset);
 
+        getSupportActionBar().hide();
+
         auth = FirebaseAuth.getInstance();
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextError = findViewById(R.id.editTextError);
@@ -73,7 +75,7 @@ public class PasswordResetActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
-                        editTextError.setText("Please Check Your Email and Click Login");
+                        editTextError.setText("Please Check Your Email and Then Click Login");
                         progressBar.setVisibility(View.GONE);
                     }else{
                         editTextError.setText("Try again and provide Valid Email");

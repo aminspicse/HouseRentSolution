@@ -50,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="45dp"
+        android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:ems="10"
@@ -66,6 +67,7 @@
     </EditText>
 
     <EditText
+        android:layout_margin="20dp"
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -76,7 +78,6 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/bordered_edittext"
         android:hint="Password"
-        android:fontFamily="@font/mont_bold"
         android:inputType="textPassword"
         android:textSize="20sp"
         app:layout_constraintRight_toRightOf="parent"
@@ -85,6 +86,7 @@
         <requestFocus />
     </EditText>
     <EditText
+        android:layout_margin="20dp"
         android:id="@+id/editTextConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -95,7 +97,6 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/bordered_edittext"
         android:hint="Confirm Password"
-        android:fontFamily="@font/mont_bold"
         android:inputType="textPassword"
         android:textSize="20sp"
         app:layout_constraintRight_toRightOf="parent"
@@ -105,6 +106,7 @@
     </EditText>
 
     <Button
+        android:layout_margin="20dp"
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="50dp"

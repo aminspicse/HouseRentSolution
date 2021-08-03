@@ -52,6 +52,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
         //holder.location.setText("Location: "+viewPostModel.getLocation());
         holder.postby.setText("Post By: "+ viewPostModel.getEmail());
         holder.postTime.setText("Time: "+viewPostModel.getPostTime());
+        holder.mobile.setText("Mobile: "+viewPostModel.getMobile());
         String imageUri= null;
         imageUri = viewPostModel.getImageUrl();
         Picasso.get().load(imageUri).into(holder.imageView);
@@ -67,7 +68,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
 
         // hear declare design
         ImageView imageView;
-        TextView title, imageurl, description, rentAmount,location, postby, postTime;
+        TextView title, imageurl, description, rentAmount,location, postby, postTime, mobile;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,6 +79,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.ViewHolder
 //            location = itemView.findViewById(R.id.location);
             postby = itemView.findViewById(R.id.postedby);
             postTime = itemView.findViewById(R.id.postedTime);
+            mobile = itemView.findViewById(R.id.mobile);
         }
     }
 
